@@ -104,8 +104,8 @@ export default function Dashboard() {
       if (filters.region)     params.region = filters.region
       if (filters.product_id) params.product_id = filters.product_id
       const [dash, emps] = await Promise.all([
-        api('/api/dashboard-summary', params),
-        api('/api/employees'),
+        api.get('/dashboard-summary', { params }).then(r => r.data),
+        api.get('/employees').then(r => r.data),
       ])
       setData(dash)
       if (emps?.length) setTopEmployee(emps[0])
