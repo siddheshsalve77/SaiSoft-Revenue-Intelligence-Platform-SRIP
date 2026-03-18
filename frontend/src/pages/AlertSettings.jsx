@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
-import axios from 'axios'
+import api from '../utils/api'
 import { Bell, BellOff, CheckCircle, AlertCircle, TrendingUp, TrendingDown, Users, Package, RefreshCw, Settings, ToggleLeft, ToggleRight } from 'lucide-react'
 import './shared.css'
 import './AlertSettings.css'
@@ -34,9 +34,9 @@ export default function AlertSettings() {
   const fetchData = useCallback(async () => {
     try {
       const [dash, emp, clients] = await Promise.all([
-        axios.get('/api/dashboard-summary'),
-        axios.get('/api/employees'),
-        axios.get('/api/clients'),
+        api.get('/dashboard-summary'),
+        api.get('/employees'),
+        api.get('/clients'),
       ])
       setData({ dash: dash.data, employees: emp.data, clients: clients.data })
       setLastRefresh(new Date())

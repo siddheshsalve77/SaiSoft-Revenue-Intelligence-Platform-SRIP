@@ -9,12 +9,11 @@ import {
   Zap, BrainCircuit, Radio, PlusCircle, FileText,
   Trophy, Sparkles
 } from 'lucide-react'
-import axios from 'axios'
+import api from '../utils/api'
 import './shared.css'
 import './Dashboard.css'
 
 /* ── API helper ─────────────────────────────────────────────── */
-const api = (url, params) => axios.get(url, { params }).then((r) => r.data)
 
 /* ── Formatters ─────────────────────────────────────────────── */
 const fmt = (v) => {

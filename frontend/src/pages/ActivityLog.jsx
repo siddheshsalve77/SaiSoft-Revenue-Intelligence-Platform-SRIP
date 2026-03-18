@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
-import axios from 'axios'
+import api from '../utils/api'
 import { RefreshCw, CheckCircle, Package, Users, BarChart2 } from 'lucide-react'
 import './shared.css'
 import './ActivityLog.css'
@@ -33,7 +33,7 @@ export default function ActivityLog() {
 
   const fetchData = useCallback(async () => {
     try {
-      const res = await axios.get('/api/transactions', { params: {
+      const res = await api.get('/transactions', { params: {
         page: 1, page_size: 80,
         status: filterStatus || undefined, region: filterRegion || undefined
       }})

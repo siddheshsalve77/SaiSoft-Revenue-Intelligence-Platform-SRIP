@@ -7,7 +7,7 @@ import {
   UserCheck, FileText, Activity, Radio, BarChart2,
   Bell, LogOut, Sun, Moon, Search, X
 } from 'lucide-react'
-import axios from 'axios'
+import api from '../utils/api'
 import './layout.css'
 
 const NAV_SECTIONS = [
@@ -60,8 +60,8 @@ function GlobalSearch() {
     setLoading(true)
     try {
       const [emps, prods] = await Promise.all([
-        axios.get('/api/employees').then(r => r.data),
-        axios.get('/api/products').then(r => r.data),
+        api.get('/employees').then(r => r.data),
+        api.get('/products').then(r => r.data),
       ])
       const q_ = q.toLowerCase()
       setResults({

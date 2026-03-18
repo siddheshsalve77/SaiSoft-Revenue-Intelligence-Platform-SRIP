@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
-import axios from 'axios'
+import api from '../utils/api'
 import { FileText, Download, Filter, Calendar, MapPin, Package, RefreshCw, FileSpreadsheet, BarChart2, TrendingUp } from 'lucide-react'
 import './shared.css'
 import './Reports.css'
@@ -67,10 +67,10 @@ export default function Reports() {
   const fetchData = useCallback(async () => {
     try {
       const [d, e, c, t] = await Promise.all([
-        axios.get('/api/dashboard-summary'),
-        axios.get('/api/employees'),
-        axios.get('/api/clients'),
-        axios.get('/api/transactions', { params: { page: 1, page_size: 100, region: filterRegion || undefined, date_from: filterFrom || undefined, date_to: filterTo || undefined } }),
+        api.get('/dashboard-summary'),
+        api.get('/employees'),
+        api.get('/clients'),
+        api.get('/transactions', { params: { page: 1, page_size: 100, region: filterRegion || undefined, date_from: filterFrom || undefined, date_to: filterTo || undefined } }),
       ])
       setDash(d.data); setEmployees(e.data); setClients(c.data)
       setTransactions(t.data.data || [])

@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
-import axios from 'axios'
+import api from '../utils/api'
 import { RefreshCw, Zap } from 'lucide-react'
 import './shared.css'
 import './LiveFeed.css'
@@ -25,7 +25,7 @@ export default function LiveFeed() {
   const fetchFeed = useCallback(async () => {
     if (paused) return
     try {
-      const res  = await axios.get('/api/transactions', { params: { page: 1, page_size: 30 } })
+      const res  = await api.get('/transactions', { params: { page: 1, page_size: 30 } })
       const fresh = res.data.data || []
       setFeed(prev => {
         const prevIds = new Set(prev.map(t => t.id))

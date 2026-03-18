@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useCallback } from 'react'
-import axios from 'axios'
+import api from '../utils/api'
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts'
 import { Users, TrendingUp, MapPin, Building2, Star, Search, X, RefreshCw, Zap, Award } from 'lucide-react'
 import './shared.css'
@@ -205,7 +205,7 @@ export default function Clients() {
   const [lastRefresh, setLastRefresh]     = useState(null)
 
   const fetchData = useCallback(() => {
-    axios.get('/api/clients')
+    api.get('/clients')
       .then(r => { setData(r.data); setLastRefresh(new Date()) })
       .catch(e => setError(e.message))
       .finally(() => setLoading(false))

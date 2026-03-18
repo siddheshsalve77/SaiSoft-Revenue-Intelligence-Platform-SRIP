@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useCallback, useRef } from 'react'
-import axios from 'axios'
+import api from '../utils/api'
 import {
   BarChart, Bar, Cell, PieChart, Pie, Tooltip, ResponsiveContainer,
   LineChart, Line, XAxis, YAxis, CartesianGrid, Area, AreaChart
@@ -304,7 +304,7 @@ export default function Transactions() {
       if (filterStatus)  params.status     = filterStatus
       if (filterFrom)    params.date_from  = filterFrom
       if (filterTo)      params.date_to    = filterTo
-      const res = await axios.get('/api/transactions', { params })
+      const res = await api.get('/transactions', { params })
       setData(res.data)
       setLastRefresh(new Date())
       setPage(p)
@@ -316,8 +316,8 @@ export default function Transactions() {
   const fetchAnalytics = useCallback(async () => {
     try {
       const [dash, txnAll] = await Promise.all([
-        axios.get('/api/dashboard-summary'),
-        axios.get('/api/transactions', { params: { page: 1, page_size: 50 } }),
+        api.get('/dashboard-summary'),
+        api.get('/transactions', { params: { page: 1, page_size: 50 } }),
       ])
       const txns = txnAll.data.data || []
       const statusDist = ['completed','pending','cancelled'].map(s => ({
