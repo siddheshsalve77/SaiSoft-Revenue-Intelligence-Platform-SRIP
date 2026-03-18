@@ -1,0 +1,236 @@
+/* ── Shared App Page Styles v2 ─────────────────────────────── */
+/* Light-theme compatible — imported by all app pages            */
+
+/* ── Page header ── */
+.page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-xl);
+  flex-wrap: wrap;
+}
+
+.dash-title {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--color-text-primary);
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+
+.dash-subtitle {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+
+/* ── Filter Bar ── */
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.filter-select {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 7px 28px 7px 12px;
+  background: var(--color-card);
+  border: 1px solid var(--color-edge);
+  border-radius: var(--radius-md);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  outline: none;
+  transition: border-color var(--duration-fast) ease, box-shadow var(--duration-fast) ease;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%2394A3B8' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  min-width: 130px;
+  box-shadow: var(--shadow-xs);
+}
+.filter-select:focus,
+.filter-select:hover {
+  border-color: var(--color-indigo);
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.09);
+  color: var(--color-text-primary);
+}
+
+.filter-divider {
+  width: 1px;
+  height: 20px;
+  background: var(--color-edge);
+  margin: 0 2px;
+}
+
+.filter-refresh {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  padding: 7px 11px;
+  background: var(--color-card);
+  border: 1px solid var(--color-edge);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--duration-fast) ease;
+  font-family: var(--font-body);
+  box-shadow: var(--shadow-xs);
+}
+.filter-refresh:hover { color: var(--color-text-primary); border-color: var(--color-indigo); }
+.filter-refresh svg { transition: transform 0.4s ease; }
+.filter-refresh:hover svg { transform: rotate(180deg); }
+
+.filter-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  user-select: none;
+  padding: 7px 12px;
+  border: 1px solid var(--color-edge);
+  border-radius: var(--radius-md);
+  background: var(--color-card);
+  transition: border-color 0.2s ease, color 0.2s ease;
+  font-family: var(--font-body);
+}
+.filter-toggle:hover { border-color: var(--color-indigo); color: var(--color-text-primary); }
+.filter-toggle input { accent-color: var(--color-indigo); cursor: pointer; }
+
+/* ── Empty / Error state ── */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px var(--space-lg);
+  gap: var(--space-sm);
+  text-align: center;
+}
+.empty-state__icon { font-size: 40px; margin-bottom: var(--space-sm); }
+.empty-state__title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+.empty-state__sub { font-size: 13px; color: var(--color-text-muted); }
+
+/* ── Modal overlay ── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15,23,42,0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  padding: var(--space-md);
+  animation: fade-in 0.18s ease;
+}
+[data-theme="dark"] .modal-overlay {
+  background: rgba(0,0,0,0.6);
+}
+
+.modal-card {
+  background: var(--color-card);
+  border: 1px solid var(--color-edge);
+  border-radius: var(--radius-xl);
+  width: 100%;
+  max-width: 480px;
+  padding: var(--space-xl);
+  position: relative;
+  animation: slide-up 0.28s var(--ease-out-expo) both;
+  box-shadow: var(--shadow-modal);
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.modal-close {
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+  background: var(--color-bg-muted);
+  border: 1px solid var(--color-edge);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-muted);
+  width: 28px; height: 28px;
+  cursor: pointer;
+  font-size: 12px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s ease;
+}
+.modal-close:hover { color: var(--color-text-primary); border-color: var(--color-edge-light); background: var(--color-panel); }
+
+.modal-top {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+
+.modal-name {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--color-text-primary);
+  letter-spacing: -0.02em;
+  margin-bottom: 2px;
+}
+.modal-role   { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+.modal-region { font-size: 12px; color: var(--color-text-muted); }
+.modal-status { margin-left: auto; font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: var(--radius-full); align-self: flex-start; }
+.modal-status.active   { background: var(--color-success-dim); color: var(--color-success); }
+.modal-status.inactive { background: var(--color-bg-muted);    color: var(--color-text-muted); }
+
+.modal-kpis {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-sm);
+}
+
+.modal-kpi {
+  background: var(--color-bg-muted);
+  border: 1px solid var(--color-edge);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  transition: border-color 0.15s ease;
+}
+.modal-kpi:hover { border-color: rgba(99,102,241,0.25); }
+.modal-kpi__label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--color-text-muted);
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+.modal-kpi__value {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .page-header  { flex-direction: column; align-items: flex-start; }
+  .filter-bar   { gap: 6px; }
+  .filter-select{ min-width: 110px; font-size: 12px; }
+  .modal-kpis   { grid-template-columns: 1fr; }
+}

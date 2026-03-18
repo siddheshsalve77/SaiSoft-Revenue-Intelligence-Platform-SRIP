@@ -1,0 +1,47 @@
+/* ── Clients Page CSS ─────────────────────────────────────────── */
+.client-analytics-row {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 260px;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+  align-items: start;
+}
+.client-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(15,23,42,0.07);
+  border-radius: var(--radius-lg);
+  padding: 18px 18px 14px;
+  cursor: pointer;
+  display: flex; flex-direction: column; gap: 6px;
+  box-shadow: var(--shadow-card);
+  position: relative; overflow: hidden;
+  transition: border-color 0.2s ease, transform 0.2s var(--ease-out-expo), box-shadow 0.2s ease;
+}
+.client-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.95) 40%, rgba(255,255,255,0.95) 60%, transparent);
+}
+.client-card:hover { border-color: rgba(99,102,241,0.2); transform: translateY(-3px); box-shadow: var(--shadow-card-hover); }
+.client-card--top { border-color: rgba(245,158,11,0.2); background: linear-gradient(150deg, #FFFFFF 75%, rgba(245,158,11,0.03) 100%); }
+.client-rank-badge {
+  position: absolute; top: 10px; right: 10px;
+  font-size: 9.5px; font-weight: 700;
+  color: #F59E0B; background: rgba(245,158,11,0.1);
+  border: 1px solid rgba(245,158,11,0.22); border-radius: var(--radius-full);
+  padding: 2px 7px;
+}
+.client-card__header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 6px; }
+.client-card__badges { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; margin-top: 2px; }
+.client-avatar {
+  border-radius: 12px; display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-weight: 700; font-size: 15px; flex-shrink: 0;
+  width: 46px; height: 46px;
+  transition: box-shadow 0.2s ease;
+}
+.client-card:hover .client-avatar { box-shadow: 0 0 0 3px rgba(99,102,241,0.15); }
+.client-card__name { font-family: var(--font-display); font-size: 14.5px; font-weight: 700; color: var(--color-text-primary); letter-spacing: -0.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.client-card__sub { font-size: 11px; color: var(--color-text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.client-card__stats { display: flex; align-items: center; gap: var(--space-md); padding-top: 8px; border-top: 1px solid rgba(15,23,42,0.06); }
+.client-card__stat { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0; }
+@media (max-width: 1100px) { .client-analytics-row { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 700px)  { .client-analytics-row { grid-template-columns: 1fr; } }
